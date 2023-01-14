@@ -40,6 +40,7 @@ func (r *queryResolver) User(ctx context.Context, id external.ObjectID) (*model.
 		Children:        3,
 		Cars:            5,
 		Weddings:        2,
+		CashOnHand:      5.76,
 	}, nil
 }
 

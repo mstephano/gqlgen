@@ -260,7 +260,7 @@ func (t *TypeReference) IsUnderlyingBasic() bool {
 func (t *TypeReference) IsUnusualBasic() bool {
 	if basic, isBasic := t.GO.(*types.Basic); isBasic {
 		switch basic.Kind() {
-		case types.Int8, types.Int16, types.Uint, types.Uint8, types.Uint16, types.Uint32:
+		case types.Float32, types.Int8, types.Int16, types.Uint, types.Uint8, types.Uint16, types.Uint32:
 			return true
 		default:
 			return false
@@ -272,7 +272,7 @@ func (t *TypeReference) IsUnusualBasic() bool {
 func (t *TypeReference) IsUnderlyingUnusualBasic() bool {
 	if basic, isUnderlyingBasic := t.GO.Underlying().(*types.Basic); isUnderlyingBasic {
 		switch basic.Kind() {
-		case types.Int8, types.Int16, types.Uint, types.Uint8, types.Uint16, types.Uint32:
+		case types.Float32, types.Int8, types.Int16, types.Uint, types.Uint8, types.Uint16, types.Uint32:
 			return true
 		default:
 			return false

@@ -25,6 +25,7 @@ type RawUser struct {
 	Children          int
 	Cars              int
 	Weddings          int
+	CashOnHand        float64
 }
 
 func TestScalars(t *testing.T) {
@@ -83,11 +84,16 @@ func TestScalars(t *testing.T) {
 	t.Run("unusual basic", func(t *testing.T) {
 		var resp struct{ User RawUser }
 
-		err := c.Post(`{ user(id:"=1=") { children cars weddings } }`, &resp)
+		err := c.Post(`{ user(id:"=1=") { children cars weddings cashOnHand } }`, &resp)
 		require.NoError(t, err)
 		require.Equal(t, 3, resp.User.Children)
 		require.Equal(t, 5, resp.User.Cars)
 		require.Equal(t, 2, resp.User.Weddings)
+
+		// below is the reason why float32 still require a scalar with custom marshalling/unmarshalling
+		// anyone knows how to fix this?
+		require.NotEqual(t, 5.76, resp.User.CashOnHand)
+		require.Equal(t, 5.760000228881836, resp.User.CashOnHand)
 	})
 
 	t.Run("custom error messages", func(t *testing.T) {

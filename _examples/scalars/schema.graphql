@@ -22,6 +22,7 @@ type User {
     children: Int!
     cars: Int!
     weddings: Int!
+    cashOnHand: Float!
 }
 
 type Address {

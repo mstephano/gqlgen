@@ -56,6 +56,7 @@ type User struct {
 	Children        uint
 	Cars            external.Count
 	Weddings        Sum
+	CashOnHand      float32
 }
 
 // Point is serialized as a simple array, eg [1, 2]
